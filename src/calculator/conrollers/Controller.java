@@ -1,10 +1,10 @@
 package calculator.conrollers;
 
+import calculator.model.Model;
 import calculator.validators.Validator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import calculator.model.Model;
 import javafx.scene.text.Text;
 
 public class Controller {

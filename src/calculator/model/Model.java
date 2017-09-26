@@ -6,8 +6,8 @@ public class Model implements MathOperations{
 
     AlertDialogController alertDialogController = new AlertDialogController();
 
-    private double dividend;
-    private double divider;
+    private double dividend; //Делимое
+    private double divider; //Делитель
 
     public void setDividend(double dividend) {
         this.dividend = dividend;
