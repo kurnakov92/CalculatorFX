@@ -17,15 +17,17 @@ public class Model implements MathOperations{
         this.divider = divider;
     }
 
+
     @Override
     public double division() {
 
+        double result = -2;
         if (divider == 0){
             alertDialogController.alert("Ошибка!", "Ошибка деления", "Делить на 0 нельзя!");
-            return -1;
+            result = -1;
         } else {
-            return dividend/divider;
+            result = dividend/divider;
         }
-
+        return result;
     }
 }

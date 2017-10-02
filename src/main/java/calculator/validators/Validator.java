@@ -18,4 +18,15 @@ public class Validator {
 
     }
 
+    public boolean isAcceptableLength(String value){
+        boolean result = false;
+
+        if (value.length()>10){
+            result = false;
+        } else {
+            result = true;
+        }
+        return result;
+    }
+
 }

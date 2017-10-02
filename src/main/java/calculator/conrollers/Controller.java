@@ -57,13 +57,36 @@ public class Controller {
         return result;
     }
 
+    public boolean checkInputData(String value){
+        boolean result = false;
+        if (!validator.isAcceptableLength(value)) {
+            alertDialogController.alert("Ошибка!", "Ошибка длины вводимого значения!",
+                    "Введите число не длинее 10 символов!");
+            result = false;
+        } else {
+            result = true;
+        }
+        return result;
+    }
+
     @FXML
-    public void calculate(ActionEvent event) {
+    public void calculate() {
         if (!isFieldsClear()) {
 
             //Считываем в строковые переменные значения из TextField-ов
             String strDividend = (String) dividendTextField.getText();
+            if (!checkInputData(strDividend)){
+                clearField("dividend");
+                outputResult.setText("");
+                return;
+            }
+
             String strDivider = (String) dividerTextField.getText();
+            if (!checkInputData(strDivider)){
+                clearField("divider");
+                outputResult.setText("");
+                return;
+            }
 
             /**
              * если значение числовое - сетим значение в делимое в класс Модель
@@ -72,21 +95,23 @@ public class Controller {
             if (validator.isNumeric(strDividend)) {
                 model.setDividend(Double.parseDouble(strDividend));
             } else {
-                alertDialogController.alert("Ошибка!", "Ошибка делимого.", "Делимое не является числом!");
+                alertDialogController.alert("Ошибка!", "Ошибка делимого.",
+                                            "Делимое не является числом!");
                 clearField("dividend");
             }
 
             if (validator.isNumeric(strDivider)) {
                 model.setDivider(Double.parseDouble(strDivider));
             } else {
-                alertDialogController.alert("Ошибка!", "Ошибка делителя.", "Делитель не является числом!");
+                alertDialogController.alert("Ошибка!", "Ошибка делителя.",
+                                            "Делитель не является числом!");
                 clearField("divider");
                 outputResult.setText("");
             }
 
 
             double result = model.division();
-            if (result != -1){
+            if (result != -1) {
                 outputResult.setText(String.valueOf(result));
                 System.out.println(result);
             }
