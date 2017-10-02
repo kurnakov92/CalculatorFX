@@ -2,7 +2,6 @@ package calculator.conrollers;
 
 import calculator.model.Model;
 import calculator.validators.Validator;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -57,7 +56,7 @@ public class Controller {
         return result;
     }
 
-    public boolean checkInputData(String value){
+    public boolean checkInputDataLength(String value){
         boolean result = false;
         if (!validator.isAcceptableLength(value)) {
             alertDialogController.alert("Ошибка!", "Ошибка длины вводимого значения!",
@@ -73,16 +72,19 @@ public class Controller {
     public void calculate() {
         if (!isFieldsClear()) {
 
-            //Считываем в строковые переменные значения из TextField-ов
+            /**
+             * Считываем в строковые переменные значения из TextField-ов
+             * Проверка на длину вводимой строки
+             */
             String strDividend = (String) dividendTextField.getText();
-            if (!checkInputData(strDividend)){
+            if (!checkInputDataLength(strDividend)){
                 clearField("dividend");
                 outputResult.setText("");
                 return;
             }
 
             String strDivider = (String) dividerTextField.getText();
-            if (!checkInputData(strDivider)){
+            if (!checkInputDataLength(strDivider)){
                 clearField("divider");
                 outputResult.setText("");
                 return;
